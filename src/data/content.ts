@@ -1,33 +1,28 @@
-// Academic website content for Ege Çırakman
-// Structured data for single-page academic site
+// Complete academic content for Ege Çırakman's portfolio
+// Professional academic website optimized for PhD applications
 
+// Research Interests
+export const interests = [
+  "Score-based / diffusion generative modeling (EDM, wavelet/curvelet adaptations)",
+  "Seismic Bayesian inversion; simulation-based inference", 
+  "Learning dynamics: abrupt learning, ghost mechanisms, short-term memory in RNNs",
+  "Trustworthy image super-resolution and evaluation",
+  "Real-time anomaly detection; digital twins"
+];
+
+// Personal Information
 export const person = {
   name: "Ege Çırakman",
-  tagline: "AI + mathematical modeling — generative models for scientific inverse problems, learning dynamics in RNNs, and trustworthy vision.",
+  tagline: "AI + mathematical modeling — generative models for scientific inverse problems, learning dynamics in RNNs, and trustworthy vision systems.",
   email: "cirakman18@itu.edu.tr",
   location: "Istanbul, Turkey",
   scholar: "https://scholar.google.com/citations?user=ZX7U-TgAAAAJ",
   linkedin: "https://www.linkedin.com/in/ege-%C3%A7%C4%B1rakman-527759200/",
   cv_pdf_url: "/files/Ege_Cirakman_CV.pdf",
-  headshot_alt: "Portrait of Ege Çırakman"
+  headshot_alt: "Professional portrait of Ege Çırakman, researcher in AI and mathematical modeling",
+  researchSummary: "I develop generative models and scalable inference methods for scientific imaging (seismic), study learning dynamics in RNNs, and work on trustworthy vision systems.",
+  interests
 };
-
-export const education = [
-  {
-    school: "Istanbul Technical University (ITU)",
-    degree: "B.Sc., Control & Automation Engineering",
-    dates: "Exp. Jun 2026",
-    notes: "GPA 3.71/4.00; Department rank 1/101 (end of 2024)"
-  }
-];
-
-export const interests = [
-  "Score-based / diffusion generative modeling (EDM, wavelet/curvelet adaptations)",
-  "Seismic Bayesian inversion; simulation-based inference",
-  "Learning dynamics: abrupt learning, ghost mechanisms, short-term memory in RNNs",
-  "Trustworthy image super-resolution and evaluation",
-  "Real-time anomaly detection; digital twins"
-];
 
 export const personalInfo = {
   name: person.name,
@@ -40,10 +35,18 @@ export const personalInfo = {
     email: `mailto:${person.email}`,
     cv: person.cv_pdf_url,
   },
-  researchSummary:
-    "I develop generative models and scalable inference methods for scientific imaging (seismic), study learning dynamics in RNNs, and work on trustworthy vision systems.",
-  interests,
+  researchSummary: person.researchSummary,
+  interests
 };
+
+export const education = [
+  {
+    school: "Istanbul Technical University (ITU)",
+    degree: "B.Sc., Control & Automation Engineering",
+    dates: "Exp. Jun 2026",
+    notes: "GPA 3.71/4.00; Department rank 1/101 (end of 2024)"
+  }
+];
 
 export const news = [
   { date: "Aug 2025", text: "IMAGE 2025 oral: WSGM posterior surrogate for seismic inversion" },
@@ -135,11 +138,6 @@ export const publications: Publication[] = [
   }
 ];
 
-export const manuscripts = [
-  { title: "Heavy-Tailed Diffusion for Minority-Mode Coverage", status: "in preparation" },
-  { title: "Curvelet-adapted diffusion & Curvelet Neural Operator", status: "in preparation" }
-];
-
 export interface Experience {
   org: string;
   role: string;
@@ -189,33 +187,11 @@ export const experience: Experience[] = [
 ];
 
 export const internationalExperience: Experience[] = [
-  {
-    org: experience[0].org,
-    role: experience[0].role,
-    dates: experience[0].dates,
-    bullets: experience[0].bullets,
-  },
-  {
-    org: experience[1].org,
-    role: experience[1].role,
-    dates: experience[1].dates,
-    bullets: experience[1].bullets,
-  },
+  experience[0], experience[1]
 ];
 
 export const nationalExperience: Experience[] = [
-  {
-    org: experience[2].org,
-    role: experience[2].role,
-    dates: experience[2].dates,
-    bullets: experience[2].bullets,
-  },
-  {
-    org: experience[3].org,
-    role: experience[3].role,
-    dates: experience[3].dates,
-    bullets: experience[3].bullets,
-  },
+  experience[2], experience[3]
 ];
 
 export const awards = [
@@ -241,3 +217,14 @@ export const skills = {
   frameworks: ["PyTorch", "TensorFlow", "OpenCV"],
   systems: ["CUDA", "Docker", "Linux", "ROS", "Simulink", "Devito", "JUDI"]
 };
+
+export const navigation = [
+  { name: "About", href: "#about" },
+  { name: "Publications", href: "#publications" },
+  { name: "Research", href: "#research" },
+  { name: "Experience", href: "#experience" },
+  { name: "Awards", href: "#awards" },
+  { name: "Projects", href: "#projects" },
+  { name: "CV", href: "#cv" },
+  { name: "Contact", href: "#contact" }
+];

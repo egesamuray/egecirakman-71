@@ -2,110 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Academic Website Design System - High contrast, minimalist design for Ege Çırakman
-All colors MUST be HSL for semantic tokens.
-*/
-
 @layer base {
   :root {
-    /* Base colors - Academic minimalist theme */
-    --background: 0 0% 99%;
-    --foreground: 220 15% 8%;
-
-    /* Card and popover backgrounds */
+    /* Professional Academic Theme - Clean blues with high contrast */
+    --background: 0 0% 100%;
+    --foreground: 222 15% 15%;
+    
+    /* Card and surface backgrounds */
     --card: 0 0% 100%;
-    --card-foreground: 220 15% 8%;
+    --card-foreground: 222 15% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 8%;
-
-    /* Primary brand - Deep navy for academic feel */
-    --primary: 220 35% 15%;
+    --popover-foreground: 222 15% 15%;
+    
+    /* Primary - Professional Blue */
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 98%;
-    --primary-muted: 220 20% 25%;
-
-    /* Secondary - Warm academic gray */
-    --secondary: 215 15% 94%;
-    --secondary-foreground: 220 15% 8%;
-
-    /* Muted states */
-    --muted: 215 15% 96%;
-    --muted-foreground: 220 10% 46%;
-
-    /* Accent - Research highlight blue */
-    --accent: 215 85% 20%;
+    --primary-muted: 217 91% 95%;
+    
+    /* Secondary - Neutral Grays */
+    --secondary: 210 6% 93%;
+    --secondary-foreground: 222 15% 15%;
+    --muted: 210 6% 97%;
+    --muted-foreground: 215 16% 47%;
+    
+    /* Accent - Professional Blue */
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 98%;
-    --accent-light: 215 85% 92%;
-
+    --accent-light: 217 91% 95%;
+    
     /* Status colors for publications */
-    --success: 140 65% 30%;
+    --success: 142 76% 36%;
     --success-foreground: 0 0% 98%;
     --warning: 38 92% 50%;
-    --warning-foreground: 220 15% 8%;
+    --warning-foreground: 0 0% 98%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-
-    /* Interface elements */
-    --border: 215 15% 88%;
-    --input: 215 15% 92%;
-    --ring: 220 35% 15%;
-
-    /* Academic spacing and typography */
-    --radius: 0.375rem;
-
+    
+    /* UI Elements */
+    --border: 214 13% 91%;
+    --input: 214 13% 91%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+    
+    /* Reading-focused Typography */
+    --content-width: 72ch;
+    --line-height-relaxed: 1.5;
+    
+    /* Sidebar support */
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* Dark mode - Academic midnight theme */
-    --background: 220 20% 4%;
-    --foreground: 0 0% 95%;
-
-    --card: 220 15% 6%;
-    --card-foreground: 0 0% 95%;
-    --popover: 220 15% 6%;
-    --popover-foreground: 0 0% 95%;
-
-    /* Dark mode primary - Lighter navy */
-    --primary: 215 60% 70%;
-    --primary-foreground: 220 20% 4%;
-    --primary-muted: 215 40% 60%;
-
-    --secondary: 220 15% 12%;
-    --secondary-foreground: 0 0% 95%;
-
-    --muted: 220 15% 10%;
-    --muted-foreground: 220 10% 65%;
-
-    /* Dark mode accent */
-    --accent: 215 85% 65%;
-    --accent-foreground: 220 20% 4%;
-    --accent-light: 215 85% 15%;
-
-    /* Dark mode status colors */
-    --success: 140 65% 55%;
-    --success-foreground: 220 20% 4%;
+    /* Dark Academic Theme */
+    --background: 222 15% 7%;
+    --foreground: 210 6% 93%;
+    
+    --card: 222 15% 9%;
+    --card-foreground: 210 6% 93%;
+    --popover: 222 15% 9%;
+    --popover-foreground: 210 6% 93%;
+    
+    /* Primary - Bright Blue for Dark */
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 15% 7%;
+    --primary-muted: 217 91% 15%;
+    
+    /* Secondary - Dark Grays */
+    --secondary: 222 15% 13%;
+    --secondary-foreground: 210 6% 93%;
+    --muted: 222 15% 11%;
+    --muted-foreground: 215 16% 57%;
+    
+    /* Accent - Bright Blue */
+    --accent: 217 91% 60%;
+    --accent-foreground: 222 15% 7%;
+    --accent-light: 217 91% 15%;
+    
+    /* Dark status colors */
+    --success: 142 76% 45%;
+    --success-foreground: 222 15% 7%;
     --warning: 38 92% 60%;
-    --warning-foreground: 220 20% 4%;
+    --warning-foreground: 222 15% 7%;
     --destructive: 0 72% 61%;
-    --destructive-foreground: 220 20% 4%;
-
-    --border: 220 15% 15%;
-    --input: 220 15% 12%;
-    --ring: 215 60% 70%;
+    --destructive-foreground: 222 15% 7%;
+    
+    /* Dark UI Elements */
+    --border: 215 16% 20%;
+    --input: 215 16% 20%;
+    --ring: 217 91% 60%;
+    
+    /* Dark sidebar */
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -121,43 +114,113 @@ All colors MUST be HSL for semantic tokens.
   * {
     @apply border-border;
   }
-
+  
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4rem;
+  }
+  
   body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-size: 16px;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
   }
-
-  /* Academic typography settings */
+  
+  /* Skip to content link for accessibility */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50;
+    @apply bg-primary text-primary-foreground px-4 py-2 rounded-md;
+    @apply font-medium text-sm transition-all;
+  }
+  
+  /* Typography system */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply font-semibold text-foreground tracking-tight;
     line-height: 1.2;
   }
-
-  h1 { @apply text-3xl lg:text-4xl; }
-  h2 { @apply text-2xl lg:text-3xl; }
-  h3 { @apply text-xl lg:text-2xl; }
-  h4 { @apply text-lg lg:text-xl; }
-
-  p, li {
-    max-width: 65ch;
+  
+  h1 { @apply text-4xl md:text-5xl; }
+  h2 { @apply text-3xl md:text-4xl; }
+  h3 { @apply text-2xl md:text-3xl; }
+  h4 { @apply text-xl md:text-2xl; }
+  h5 { @apply text-lg md:text-xl; }
+  h6 { @apply text-base md:text-lg; }
+  
+  /* Reading-focused content */
+  .prose {
+    font-family: 'Source Serif Pro', Georgia, serif;
+    max-width: var(--content-width);
+    line-height: var(--line-height-relaxed);
+  }
+  
+  .prose p {
+    @apply text-foreground leading-relaxed;
     text-align: left;
   }
-
-  /* Focus styles for accessibility */
+  
+  .prose ul, .prose ol {
+    @apply space-y-2;
+  }
+  
+  /* Focus states for accessibility */
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-ring;
   }
-
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
+  
+  /* Button focus rings */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
   }
+}
 
-  /* Print styles */
-  @media print {
-    body {
-      @apply text-black bg-white;
-    }
+@layer components {
+  /* Publication status badges */
+  .badge-published {
+    @apply bg-success/10 text-success border-success/20;
+  }
+  
+  .badge-accepted {
+    @apply bg-warning/10 text-warning border-warning/20;
+  }
+  
+  .badge-preprint {
+    @apply bg-muted text-muted-foreground border-border;
+  }
+  
+  .badge-oral {
+    @apply bg-primary/10 text-primary border-primary/20;
+  }
+  
+  .badge-conference {
+    @apply bg-accent-light text-accent border-accent/20;
+  }
+  
+  /* Publication cards */
+  .publication-card {
+    @apply border rounded-lg p-6 bg-card hover:shadow-lg;
+    @apply transition-all duration-300 ease-out;
+  }
+  
+  .publication-card:hover {
+    @apply border-accent/20;
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Content sections */
+  .section-spacing {
+    @apply py-16 md:py-20;
+  }
+  
+  .content-container {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
