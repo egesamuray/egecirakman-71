@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Academic Website Design System - High contrast, minimalist design for Ege Çırakman
+All colors MUST be HSL for semantic tokens.
+*/
+
+@layer base {
+  :root {
+    /* Base colors - Academic minimalist theme */
+    --background: 0 0% 99%;
+    --foreground: 220 15% 8%;
+
+    /* Card and popover backgrounds */
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 8%;
+
+    /* Primary brand - Deep navy for academic feel */
+    --primary: 220 35% 15%;
+    --primary-foreground: 0 0% 98%;
+    --primary-muted: 220 20% 25%;
+
+    /* Secondary - Warm academic gray */
+    --secondary: 215 15% 94%;
+    --secondary-foreground: 220 15% 8%;
+
+    /* Muted states */
+    --muted: 215 15% 96%;
+    --muted-foreground: 220 10% 46%;
+
+    /* Accent - Research highlight blue */
+    --accent: 215 85% 20%;
+    --accent-foreground: 0 0% 98%;
+    --accent-light: 215 85% 92%;
+
+    /* Status colors for publications */
+    --success: 140 65% 30%;
+    --success-foreground: 0 0% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 15% 8%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Interface elements */
+    --border: 215 15% 88%;
+    --input: 215 15% 92%;
+    --ring: 220 35% 15%;
+
+    /* Academic spacing and typography */
+    --radius: 0.375rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode - Academic midnight theme */
+    --background: 220 20% 4%;
+    --foreground: 0 0% 95%;
+
+    --card: 220 15% 6%;
+    --card-foreground: 0 0% 95%;
+    --popover: 220 15% 6%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Dark mode primary - Lighter navy */
+    --primary: 215 60% 70%;
+    --primary-foreground: 220 20% 4%;
+    --primary-muted: 215 40% 60%;
+
+    --secondary: 220 15% 12%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 220 15% 10%;
+    --muted-foreground: 220 10% 65%;
+
+    /* Dark mode accent */
+    --accent: 215 85% 65%;
+    --accent-foreground: 220 20% 4%;
+    --accent-light: 215 85% 15%;
+
+    /* Dark mode status colors */
+    --success: 140 65% 55%;
+    --success-foreground: 220 20% 4%;
+    --warning: 38 92% 60%;
+    --warning-foreground: 220 20% 4%;
+    --destructive: 0 72% 61%;
+    --destructive-foreground: 220 20% 4%;
+
+    --border: 220 15% 15%;
+    --input: 220 15% 12%;
+    --ring: 215 60% 70%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Academic typography settings */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-foreground;
+    line-height: 1.2;
+  }
+
+  h1 { @apply text-3xl lg:text-4xl; }
+  h2 { @apply text-2xl lg:text-3xl; }
+  h3 { @apply text-xl lg:text-2xl; }
+  h4 { @apply text-lg lg:text-xl; }
+
+  p, li {
+    max-width: 65ch;
+    text-align: left;
+  }
+
+  /* Focus styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Print styles */
+  @media print {
+    body {
+      @apply text-black bg-white;
+    }
+  }
+}
