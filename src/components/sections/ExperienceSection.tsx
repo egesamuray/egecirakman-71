@@ -1,35 +1,31 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Calendar } from "lucide-react";
 import { internationalExperience, nationalExperience, type Experience } from "@/data/content";
 
 function ExperienceCard({ experience }: { experience: Experience }) {
   return (
-    <Card>
-      <CardHeader className="pb-4">
+    <Card className="hover:shadow-md transition-shadow">
+      <CardHeader>
         <div className="space-y-2">
           <CardTitle className="text-lg">{experience.role}</CardTitle>
-          <div className="flex items-center text-muted-foreground text-sm space-x-4">
-            <div className="flex items-center space-x-1">
-              <MapPin className="h-4 w-4" />
-              <span>{experience.org}</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <Calendar className="h-4 w-4" />
-              <span>{experience.dates}</span>
-            </div>
+          <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+            <MapPin className="h-4 w-4" />
+            <span className="font-medium">{experience.org}</span>
+          </div>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Calendar className="h-4 w-4" />
+            <span>{experience.dates}</span>
           </div>
         </div>
       </CardHeader>
-      
       <CardContent>
-        <ul className="space-y-2">
+        <ul className="space-y-3">
           {experience.bullets.map((bullet, index) => (
-            <li key={index} className="flex items-start space-x-3">
-              <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2.5 flex-shrink-0" />
-              <span className="text-sm text-muted-foreground leading-relaxed">
-                {bullet}
-              </span>
+            <li key={index} className="flex items-start space-x-3 text-sm">
+              <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+              <span className="text-muted-foreground leading-relaxed">{bullet}</span>
             </li>
           ))}
         </ul>
@@ -46,41 +42,40 @@ export function ExperienceSection() {
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold">Experience</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Research internships and collaborative projects across leading institutions
+              Research internships and collaborations at leading institutions
             </p>
           </div>
 
-          {/* International Research Experience */}
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <Badge className="bg-accent text-accent-foreground">
-                International Research
-              </Badge>
-              <div className="flex-1 h-px bg-border" />
-            </div>
+          <Tabs defaultValue="international" className="w-full">
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="international" className="flex items-center space-x-2">
+                <Badge variant="secondary">International</Badge>
+              </TabsTrigger>
+              <TabsTrigger value="national" className="flex items-center space-x-2">
+                <Badge variant="secondary">National</Badge>
+              </TabsTrigger>
+            </TabsList>
             
-            <div className="grid gap-6">
+            <TabsContent value="international" className="space-y-6">
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold mb-2">International Research</h3>
+                <p className="text-muted-foreground">Stanford University • Georgia Institute of Technology</p>
+              </div>
               {internationalExperience.map((exp, index) => (
                 <ExperienceCard key={index} experience={exp} />
               ))}
-            </div>
-          </div>
-
-          {/* National Research Experience */}
-          <div className="space-y-6">
-            <div className="flex items-center space-x-3">
-              <Badge variant="secondary">
-                National Research
-              </Badge>
-              <div className="flex-1 h-px bg-border" />
-            </div>
+            </TabsContent>
             
-            <div className="grid gap-6">
+            <TabsContent value="national" className="space-y-6">
+              <div className="text-center mb-6">
+                <h3 className="text-xl font-semibold mb-2">National Research</h3>
+                <p className="text-muted-foreground">Koç University • TEKNOPAR</p>
+              </div>
               {nationalExperience.map((exp, index) => (
                 <ExperienceCard key={index} experience={exp} />
               ))}
-            </div>
-          </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </section>

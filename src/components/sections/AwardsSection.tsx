@@ -17,7 +17,7 @@ export function AwardsSection() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
-                <Award className="h-5 w-5 text-accent" />
+                <Award className="h-5 w-5 text-primary" />
                 <span>Honors & Awards</span>
               </CardTitle>
             </CardHeader>
@@ -25,7 +25,7 @@ export function AwardsSection() {
               <ul className="space-y-4">
                 {awards.map((award, index) => (
                   <li key={index} className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-accent rounded-full mt-2.5 flex-shrink-0" />
+                    <div className="w-2 h-2 bg-primary rounded-full mt-2.5 flex-shrink-0" />
                     <span className="text-muted-foreground leading-relaxed">
                       {award}
                     </span>

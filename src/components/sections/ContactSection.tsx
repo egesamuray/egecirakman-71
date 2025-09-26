@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { useToast } from "@/hooks/use-toast";
-import { Mail, ExternalLink, Send } from "lucide-react";
+import { Mail, MapPin, ExternalLink, Send } from "lucide-react";
 import { personalInfo } from "@/data/content";
+import { useToast } from "@/hooks/use-toast";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -21,44 +21,35 @@ export function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simple spam protection - check for common spam patterns
-    const spamKeywords = ['viagra', 'casino', 'lottery', 'bitcoin', 'crypto'];
-    const containsSpam = spamKeywords.some(keyword => 
-      formData.message.toLowerCase().includes(keyword) || 
-      formData.name.toLowerCase().includes(keyword)
-    );
-
-    if (containsSpam) {
-      toast({
-        title: "Message blocked",
-        description: "Your message appears to contain spam content.",
-        variant: "destructive"
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      // Construct mailto link
-      const subject = `Message from ${formData.name} via Academic Website`;
-      const body = `From: ${formData.name} (${formData.email})\n\nMessage:\n${formData.message}`;
-      const mailtoLink = `mailto:${personalInfo.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      // Basic spam check
+      if (formData.message.toLowerCase().includes('bitcoin') || 
+          formData.message.toLowerCase().includes('crypto')) {
+        throw new Error('Potential spam detected');
+      }
+
+      // Create mailto link
+      const subject = encodeURIComponent(`Contact from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      const mailtoLink = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
       
       // Open email client
       window.location.href = mailtoLink;
       
-      // Reset form
-      setFormData({ name: '', email: '', message: '' });
-      
       toast({
         title: "Email client opened",
-        description: "Your default email client should open with the message pre-filled.",
+        description: "Your default email application should open with the message pre-filled.",
       });
+      
+      // Reset form
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       toast({
         title: "Error",
-        description: "There was an issue opening your email client. Please send an email directly.",
-        variant: "destructive"
+        description: "There was an issue preparing your message. Please try again.",
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -66,10 +57,10 @@ export function ContactSection() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value
-    });
+    }));
   };
 
   return (
@@ -79,75 +70,62 @@ export function ContactSection() {
           <div className="text-center space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold">Contact</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Get in touch for research collaborations, opportunities, or academic discussions
+              Get in touch for research collaborations, PhD applications, or academic discussions
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2">
-            {/* Contact Information */}
+          <div className="grid md:grid-cols-2 gap-8">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <Mail className="h-5 w-5 text-accent" />
-                  <span>Get in Touch</span>
+                  <Mail className="h-5 w-5 text-primary" />
+                  <span>Contact Information</span>
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="space-y-4">
-                  <div>
-                    <h3 className="font-semibold mb-2">Email</h3>
-                    <Button variant="outline" asChild>
-                      <a 
-                        href={personalInfo.profiles.email}
-                        className="flex items-center space-x-2"
-                      >
-                        <Mail className="h-4 w-4" />
-                        <span>{personalInfo.email}</span>
-                      </a>
-                    </Button>
+                  <div className="flex items-center space-x-3">
+                    <Mail className="h-4 w-4 text-muted-foreground" />
+                    <a 
+                      href={personalInfo.profiles.email}
+                      className="text-primary hover:underline"
+                    >
+                      {personalInfo.email}
+                    </a>
                   </div>
+                  
+                  <div className="flex items-center space-x-3">
+                    <MapPin className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-muted-foreground">{personalInfo.location}</span>
+                  </div>
+                </div>
 
-                  <div>
-                    <h3 className="font-semibold mb-2">Academic Profiles</h3>
-                    <div className="space-y-2">
-                      <Button variant="outline" size="sm" asChild>
-                        <a 
-                          href={personalInfo.profiles.scholar}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center space-x-2"
-                        >
-                          <ExternalLink className="h-3 w-3" />
-                          <span>Google Scholar</span>
-                        </a>
-                      </Button>
-                      
-                      <Button variant="outline" size="sm" asChild>
-                        <a 
-                          href={personalInfo.profiles.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center space-x-2"
-                        >
-                          <ExternalLink className="h-3 w-3" />
-                          <span>LinkedIn</span>
-                        </a>
-                      </Button>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="font-semibold mb-2">Location</h3>
-                    <p className="text-muted-foreground">📍 {personalInfo.location}</p>
-                  </div>
+                <div className="pt-4 border-t space-y-3">
+                  <h4 className="font-semibold">Academic Profiles</h4>
+                  
+                  <Button asChild variant="outline" size="sm" className="w-full justify-start">
+                    <a href={personalInfo.profiles.scholar} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Google Scholar
+                    </a>
+                  </Button>
+                  
+                  <Button asChild variant="outline" size="sm" className="w-full justify-start">
+                    <a href={personalInfo.profiles.linkedin} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      LinkedIn
+                    </a>
+                  </Button>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Contact Form */}
             <Card>
               <CardHeader>
-                <CardTitle>Send a Message</CardTitle>
+                <CardTitle className="flex items-center space-x-2">
+                  <Send className="h-5 w-5 text-primary" />
+                  <span>Send Message</span>
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -156,10 +134,9 @@ export function ContactSection() {
                     <Input
                       id="name"
                       name="name"
-                      type="text"
-                      required
                       value={formData.name}
                       onChange={handleChange}
+                      required
                       placeholder="Your name"
                     />
                   </div>
@@ -170,9 +147,9 @@ export function ContactSection() {
                       id="email"
                       name="email"
                       type="email"
-                      required
                       value={formData.email}
                       onChange={handleChange}
+                      required
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -182,31 +159,21 @@ export function ContactSection() {
                     <Textarea
                       id="message"
                       name="message"
-                      required
-                      rows={4}
                       value={formData.message}
                       onChange={handleChange}
+                      required
                       placeholder="Your message..."
+                      rows={4}
                     />
                   </div>
                   
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      "Opening email client..."
-                    ) : (
-                      <>
-                        <Send className="h-4 w-4 mr-2" />
-                        Send Message
-                      </>
-                    )}
+                  <Button type="submit" disabled={isSubmitting} className="w-full">
+                    {isSubmitting ? "Preparing..." : "Send Message"}
+                    <Send className="h-4 w-4 ml-2" />
                   </Button>
                   
-                  <p className="text-xs text-muted-foreground">
-                    This form opens your default email client with the message pre-filled.
+                  <p className="text-xs text-muted-foreground text-center">
+                    This will open your default email client with the message pre-filled
                   </p>
                 </form>
               </CardContent>

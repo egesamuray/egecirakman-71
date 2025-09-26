@@ -1,89 +1,33 @@
-import { useEffect } from "react";
 import { personalInfo } from "@/data/content";
 
-interface SEOHeadProps {
-  title?: string;
-  description?: string;
-  canonical?: string;
-  ogImage?: string;
-}
+export function SEOHead() {
+  const title = `${personalInfo.name} | AI Research & PhD Applications`;
+  const description = `${personalInfo.name} - ${personalInfo.tagline} Research in generative models, learning dynamics, and trustworthy AI systems.`;
 
-export function SEOHead({ 
-  title = `${personalInfo.name} - Academic Portfolio`,
-  description = personalInfo.tagline,
-  canonical = window.location.href,
-  ogImage = "/og-image.png"
-}: SEOHeadProps) {
-  
-  useEffect(() => {
-    // Update document title
-    document.title = title;
-    
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', description);
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = description;
-      document.head.appendChild(meta);
-    }
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <meta name="keywords" content="AI research, machine learning, generative models, diffusion models, RNN dynamics, computer vision, PhD applications, academic portfolio" />
+      <meta name="author" content={personalInfo.name} />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="robots" content="index, follow" />
 
-    // Update canonical link
-    let canonicalLink = document.querySelector('link[rel="canonical"]');
-    if (canonicalLink) {
-      canonicalLink.setAttribute('href', canonical);
-    } else {
-      canonicalLink = document.createElement('link');
-      canonicalLink.setAttribute('rel', 'canonical');
-      canonicalLink.setAttribute('href', canonical);
-      document.head.appendChild(canonicalLink);
-    }
+      {/* Open Graph / Facebook */}
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:site_name" content={`${personalInfo.name} | Academic Portfolio`} />
 
-    // Update Open Graph tags
-    const ogTags = [
-      { property: 'og:title', content: title },
-      { property: 'og:description', content: description },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: canonical },
-      { property: 'og:image', content: new URL(ogImage, window.location.origin).href },
-      { property: 'og:site_name', content: `${personalInfo.name} - Academic Portfolio` }
-    ];
+      {/* Twitter */}
+      <meta property="twitter:card" content="summary_large_image" />
+      <meta property="twitter:title" content={title} />
+      <meta property="twitter:description" content={description} />
 
-    ogTags.forEach(({ property, content }) => {
-      let metaTag = document.querySelector(`meta[property="${property}"]`);
-      if (metaTag) {
-        metaTag.setAttribute('content', content);
-      } else {
-        metaTag = document.createElement('meta');
-        metaTag.setAttribute('property', property);
-        metaTag.setAttribute('content', content);
-        document.head.appendChild(metaTag);
-      }
-    });
-
-    // Update Twitter Card tags
-    const twitterTags = [
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: title },
-      { name: 'twitter:description', content: description },
-      { name: 'twitter:image', content: new URL(ogImage, window.location.origin).href }
-    ];
-
-    twitterTags.forEach(({ name, content }) => {
-      let metaTag = document.querySelector(`meta[name="${name}"]`);
-      if (metaTag) {
-        metaTag.setAttribute('content', content);
-      } else {
-        metaTag = document.createElement('meta');
-        metaTag.setAttribute('name', name);
-        metaTag.setAttribute('content', content);
-        document.head.appendChild(metaTag);
-      }
-    });
-
-  }, [title, description, canonical, ogImage]);
-
-  return null;
+      {/* Additional SEO Meta Tags */}
+      <meta name="theme-color" content="hsl(221.2 83.2% 53.3%)" />
+      <meta name="citation_author" content={personalInfo.name} />
+      <meta name="citation_author_institution" content="Istanbul Technical University" />
+    </>
+  );
 }

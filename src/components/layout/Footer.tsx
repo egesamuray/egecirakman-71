@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ArrowUp } from "lucide-react";
-import { person } from "@/data/content";
+import { ArrowUp, Mail, ExternalLink, Download } from "lucide-react";
+import { personalInfo } from "@/data/content";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -10,57 +10,61 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t bg-background">
-      <div className="container py-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0">
-          {/* Quick links */}
-          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-            <a 
-              href={person.scholar}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors"
-            >
-              Google Scholar
-            </a>
-            <a 
-              href={person.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors"
-            >
-              LinkedIn
-            </a>
-            <a 
-              href={`mailto:${person.email}`}
-              className="hover:text-accent transition-colors"
-            >
-              Email
-            </a>
-            <a 
-              href={person.cv_pdf_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors"
-            >
-              CV (PDF)
-            </a>
+    <footer className="bg-muted/50 border-t py-12">
+      <div className="container">
+        <div className="max-w-4xl mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+            <div className="text-center md:text-left">
+              <p className="text-muted-foreground text-sm">
+                © {currentYear} {personalInfo.name}. All rights reserved.
+              </p>
+              <p className="text-muted-foreground text-xs mt-1">
+                Built with React, TypeScript, and Tailwind CSS
+              </p>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <Button asChild size="sm" variant="ghost">
+                  <a href={personalInfo.profiles.scholar} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="h-4 w-4 mr-1" />
+                    Scholar
+                  </a>
+                </Button>
+                
+                <Button asChild size="sm" variant="ghost">
+                  <a href={personalInfo.profiles.linkedin} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="h-4 w-4 mr-1" />
+                    LinkedIn
+                  </a>
+                </Button>
+                
+                <Button asChild size="sm" variant="ghost">
+                  <a href={personalInfo.profiles.email}>
+                    <Mail className="h-4 w-4 mr-1" />
+                    Email
+                  </a>
+                </Button>
+                
+                <Button asChild size="sm" variant="ghost">
+                  <a href={personalInfo.profiles.cv} download>
+                    <Download className="h-4 w-4 mr-1" />
+                    CV
+                  </a>
+                </Button>
+              </div>
+
+              <Button
+                onClick={scrollToTop}
+                size="sm"
+                variant="outline"
+                className="ml-4"
+              >
+                <ArrowUp className="h-4 w-4 mr-2" />
+                Back to top
+              </Button>
+            </div>
           </div>
-
-          {/* Back to top button */}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={scrollToTop}
-            className="flex items-center space-x-2 text-muted-foreground hover:text-accent"
-          >
-            <ArrowUp className="h-4 w-4" />
-            <span>Back to top</span>
-          </Button>
-        </div>
-
-        <div className="mt-6 pt-6 border-t text-center text-sm text-muted-foreground">
-          <p>© {currentYear} {person.name}. Built with modern web technologies for optimal accessibility and performance.</p>
         </div>
       </div>
     </footer>
