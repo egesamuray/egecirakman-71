@@ -93,6 +93,14 @@ export default function PublicationCard({
           {publication.tldr}
         </p>
         
+        {/* Highlight - What Changed vs Prior Work */}
+        {publication.highlight && (
+          <div className="mb-4 p-3 bg-primary/5 border-l-4 border-primary rounded-r">
+            <p className="text-sm font-medium text-primary mb-1">Key Contribution:</p>
+            <p className="text-sm text-foreground italic">{publication.highlight}</p>
+          </div>
+        )}
+        
         <div className="flex flex-wrap gap-2">
           {showDetails && (
             <Button asChild size="sm" variant="default">

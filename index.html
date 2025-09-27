@@ -58,5 +58,51 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Analytics tracking for admissions insights -->
+    <script>
+      // Simple analytics tracking for key actions
+      function trackEvent(event, details = {}) {
+        if (window.gtag) {
+          window.gtag('event', event, details);
+        }
+        console.log('Analytics:', event, details);
+      }
+
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.href;
+        
+        // Track CV downloads
+        if (href.includes('Ege_Cirakman_CV.pdf')) {
+          trackEvent('cv_download', { source: link.textContent });
+        }
+        
+        // Track reviewers kit downloads
+        if (href.includes('reviewers-kit')) {
+          trackEvent('reviewers_kit_download', { source: link.textContent });
+        }
+        
+        // Track paper outbound clicks
+        if (href.includes('arxiv.org') || href.includes('doi.org')) {
+          trackEvent('paper_outbound', { 
+            url: href,
+            paper: link.closest('[data-area]')?.dataset.area || 'unknown'
+          });
+        }
+        
+        // Track research statement views
+        if (href.includes('/research-statement')) {
+          trackEvent('research_statement_view', { source: 'navigation' });
+        }
+        
+        // Track area filter usage
+        if (link.dataset.area !== undefined) {
+          trackEvent('area_filter', { area: link.dataset.area || 'all' });
+        }
+      });
+    </script>
   </body>
 </html>

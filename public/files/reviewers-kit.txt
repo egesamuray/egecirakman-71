@@ -1,0 +1,50 @@
+# Reviewers' Kit for Ege Çırakman
+
+This reviewers' kit contains essential materials for evaluating my PhD application:
+
+## Contents
+
+1. **CV (PDF)** - Complete academic curriculum vitae
+   → Available at: /files/Ege_Cirakman_CV.pdf
+
+2. **Research Statement** - Detailed research philosophy and future directions
+   → Available at: /research-statement
+
+3. **Selected Publications** - Key research contributions:
+   - IMAGE 2025 (Oral): Wavelet score-based posterior surrogate
+   - Physical Review X: Ghost mechanism analytical model  
+   - ICML 2025: STM dynamics in RNNs
+   - ICIP 2024: Trustworthy super-resolution
+
+4. **Code Repositories** - Reproducible research implementations
+   → Available via GitHub links in publication pages
+
+5. **Presentation Materials** - Slides and posters
+   → Contact for access to latest presentation materials
+
+## Quick Access
+
+- **Main Portfolio**: https://egecirakman.com
+- **Publications**: https://egecirakman.com/#publications  
+- **Research Areas**: Inverse problems, diffusion models, learning dynamics
+- **Contact**: cirakman18@itu.edu.tr
+
+## Research Highlights
+
+### Problem Focus
+Uncertainty quantification in scientific inverse problems using structured generative priors
+
+### Methodological Innovation  
+- Wavelet/curvelet-domain diffusion models
+- EDM scheduling for provable acceleration
+- Learning dynamics theory and phase diagrams
+
+### Quantified Results
+- 73% faster sampling, 50% lower memory (IMAGE 2025)
+- Exact scaling law α* ∝ T^{-5} for abrupt learning (PRX)
+- Complete STM phase diagrams with critical LR prediction (ICML 2025)
+
+---
+
+Generated on: January 27, 2025
+Last updated: Check website for latest version
