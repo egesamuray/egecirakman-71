@@ -46,13 +46,20 @@ const Index = () => {
       <StructuredData />
       
       <div className="min-h-screen bg-background">
-        <a href="#main-content" className="skip-link">
+        <a 
+          href="#main-content" 
+          className="skip-link"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('main-content')?.focus();
+          }}
+        >
           Skip to main content
         </a>
         
         <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         
-        <main id="main-content">
+        <main id="main-content" tabIndex={-1}>
           <HeroSection />
           <div className="content-container">
             <AboutSection />

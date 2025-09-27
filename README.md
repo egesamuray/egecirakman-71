@@ -1,37 +1,49 @@
 # Ege Çırakman - Academic Portfolio
 
-A modern, accessible, and SEO-optimized academic website built with React, TypeScript, and Tailwind CSS.
+A modern, fast, and accessible academic portfolio website built with React, Vite, and Tailwind CSS. Optimized for PhD applications and designed to help admissions committees quickly access key information.
 
-## 🚀 Features
+## ✨ Features
 
-- **Modern Design**: Clean, minimalist academic design inspired by top conferences (PNAS/NeurIPS style)
-- **Accessibility**: WCAG 2.2 AA compliant with keyboard navigation and screen reader support
-- **SEO Optimized**: Complete meta tags, structured data (JSON-LD), and sitemap
-- **Performance**: Optimized for Lighthouse scores (Performance ≥90, Accessibility ≥95, SEO ≥95)
+### 🎯 Committee-Focused Design
+- **Quick Access Panel**: Direct links to Google Scholar, ORCID, CV, and contact
+- **Selected Publications**: Curated top publications displayed prominently on homepage
+- **Smart 404**: Helpful navigation when pages aren't found
 - **Mobile-First**: Responsive design that works perfectly on all devices
-- **Dark/Light Mode**: Theme toggle with localStorage persistence
-- **Contact Form**: Integrated contact form with spam protection
-- **PDF CV Viewer**: Embedded CV preview with download option
 
-## 📋 Sections
+### 🔍 Advanced Publications System
+- **Smart Search**: Real-time search by title, author, venue, or keywords
+- **Dynamic Filters**: Filter publications by year, status, and type
+- **BibTeX Generation**: Auto-generated citations with copy/download functionality
+- **Individual Paper Pages**: Detailed views with abstracts, links, and metadata
+- **Publication Cards**: Status badges, venue information, and quick access to resources
 
-- **Home**: Hero section with quick links and education info
-- **Research**: Overview and interests with faculty-targeted summary
-- **Publications**: Reverse-chronological list with status badges and links
-- **Experience**: International and national research positions
-- **Awards**: Academic achievements and recognition
-- **Projects**: Selected project implementations
-- **CV**: PDF download and preview
-- **Contact**: Contact information and message form
+### ⚡ Performance & SEO
+- **Lighthouse 95+**: Optimized for Core Web Vitals and performance metrics
+- **Schema.org Markup**: Rich snippets for search engines with Person and ScholarlyArticle schemas
+- **Open Graph**: Perfect social media previews with academic branding
+- **RSS Feed**: Automatic news feed generation for research updates
+- **Security Headers**: Production-ready security configuration
+- **Font Optimization**: Preloaded fonts with fallbacks for faster loading
 
-## 🛠 Technology Stack
+### ♿ Accessibility First
+- **WCAG 2.2 AA Compliant**: Thoroughly tested with keyboard navigation
+- **Skip Links**: Jump directly to main content functionality
+- **Focus Management**: Clear focus indicators throughout the interface
+- **Semantic HTML**: Properly structured for screen readers
+- **ARIA Labels**: Comprehensive labeling for assistive technologies
 
-- **React 18** with TypeScript
-- **Tailwind CSS** for styling
-- **Radix UI** components (shadcn/ui)
-- **Lucide React** for icons
-- **React Router** for navigation
-- **TanStack Query** for data management
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
 
 ## 📁 Project Structure
 

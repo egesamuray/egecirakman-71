@@ -63,6 +63,7 @@ export interface Publication {
   abstract?: string;
   bibtex?: string;
   selected?: boolean;
+  keywords?: string[];
 }
 
 // Publications
@@ -82,7 +83,9 @@ export const publications: Publication[] = [
     },
     tldr: "Wavelet-domain conditional score surrogate; EDM schedules; ~73% faster sampling & ~50% lower GPU at matched fidelity.",
     slug: "wavelet-score-seismic-inversion-2025",
-    selected: true
+    selected: true,
+    keywords: ["diffusion models", "seismic inversion", "wavelets", "Bayesian inference"],
+    bibtex: "@inproceedings{cirakman2025wavelet,\n  title={Efficient and scalable posterior surrogate for seismic inversion via wavelet score-based generative models},\n  author={Çırakman, Ege and Erdinc, H. T. and Herrmann, Felix J.},\n  booktitle={IMAGE Conference},\n  year={2025},\n  organization={Society of Exploration Geophysicists}\n}"
   },
   {
     title: "Dynamical phases of short-term memory mechanisms in RNNs", 
@@ -97,7 +100,9 @@ export const publications: Publication[] = [
     },
     tldr: "Two STM mechanisms (slow-point manifolds vs. limit cycles); scaling of critical LR with delay; phase diagrams.",
     slug: "rnn-stm-dynamics-icml-2025",
-    selected: true
+    selected: true,
+    keywords: ["RNN dynamics", "short-term memory", "learning theory", "dynamical systems"],
+    bibtex: "@inproceedings{kurtkaya2025dynamical,\n  title={Dynamical phases of short-term memory mechanisms in RNNs},\n  author={Kurtkaya, B. and Çırakman, Ege and others},\n  booktitle={International Conference on Machine Learning},\n  year={2025},\n  organization={PMLR}\n}"
   },
   {
     title: "A ghost mechanism: An analytical model of abrupt learning",
@@ -111,7 +116,9 @@ export const publications: Publication[] = [
     },
     tldr: "Ghost-induced bottleneck near saddle-node remnant; exact α* ∝ T^{-5}; validated across low/full-rank RNNs.",
     slug: "ghost-mechanism-abrupt-learning-2025",
-    selected: true
+    selected: true,
+    keywords: ["abrupt learning", "neural dynamics", "phase transitions", "learning theory"],
+    bibtex: "@article{dinc2025ghost,\n  title={A ghost mechanism: An analytical model of abrupt learning},\n  author={Dinc, F. and Çırakman, Ege and Schnitzer, Mark J. and Tanaka, Hidenori},\n  journal={Physical Review X},\n  year={2025},\n  publisher={American Physical Society}\n}"
   },
   {
     title: "Trustworthy SR: Resolving ambiguity in image super-resolution via diffusion models and human feedback",

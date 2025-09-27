@@ -1,0 +1,18 @@
+{
+  "name": "Ege Çırakman - Academic Portfolio",
+  "short_name": "Ege Çırakman",
+  "description": "AI researcher specializing in generative models, learning dynamics, and scientific computing",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["academic", "research", "portfolio"],
+  "lang": "en-US"
+}

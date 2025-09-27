@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: Ege Çırakman — Academic Portfolio Website
+message: "If you use content from this website, please cite the listed publications."
+authors:
+  - family-names: Çırakman
+    given-names: Ege
+    email: cirakman18@itu.edu.tr
+    affiliation: Istanbul Technical University
+    orcid: https://orcid.org/0000-0000-0000-0000
+repository-code: https://github.com/egesamuray/egecirakman-portfolio
+url: https://egecirakman.com
+date-released: 2025-01-27
+license: MIT
+keywords:
+  - academic-portfolio
+  - machine-learning
+  - generative-models
+  - diffusion-models
+  - research-website

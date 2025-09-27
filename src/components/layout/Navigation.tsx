@@ -23,7 +23,7 @@ export function Navigation({ darkMode, toggleDarkMode }: NavigationProps) {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium" aria-label="Primary navigation">
             {navigation.map((item) => (
               <a
                 key={item.name}
@@ -62,7 +62,7 @@ export function Navigation({ darkMode, toggleDarkMode }: NavigationProps) {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 space-y-3 border-t">
+          <nav className="md:hidden py-4 space-y-3 border-t" aria-label="Mobile navigation">
             {navigation.map((item) => (
               <a
                 key={item.name}

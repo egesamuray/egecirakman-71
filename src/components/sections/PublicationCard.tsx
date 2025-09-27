@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, FileText, Code, Presentation, Book, ArrowRight } from "lucide-react";
+import { ExternalLink, FileText, Code, Presentation, Book, ArrowRight, Copy } from "lucide-react";
 import { type Publication } from "@/data/content";
+import { generateBibTeX } from "@/utils/bibtex";
 
 export default function PublicationCard({ 
   publication, 
@@ -11,6 +13,7 @@ export default function PublicationCard({
   publication: Publication; 
   showDetails?: boolean;
 }) {
+  const [copied, setCopied] = useState(false);
   const getStatusVariant = (status: string) => {
     if (status === "published") return "default";
     if (status === "accepted") return "secondary";
@@ -38,6 +41,17 @@ export default function PublicationCard({
       case "slides": return "Slides";
       case "doi": return "DOI";
       default: return linkType.charAt(0).toUpperCase() + linkType.slice(1);
+    }
+  };
+
+  const handleCopyBibTeX = async () => {
+    try {
+      const bibtex = generateBibTeX(publication);
+      await navigator.clipboard.writeText(bibtex);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy BibTeX:', err);
     }
   };
 
@@ -99,6 +113,17 @@ export default function PublicationCard({
               </Button>
             )
           )}
+          
+          {/* BibTeX Copy Button */}
+          <Button 
+            onClick={handleCopyBibTeX}
+            variant="outline" 
+            size="sm"
+            className="gap-2"
+          >
+            <Copy className="h-4 w-4" />
+            {copied ? 'Copied!' : 'BibTeX'}
+          </Button>
         </div>
       </CardContent>
     </Card>
