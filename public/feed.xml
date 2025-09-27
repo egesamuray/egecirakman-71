@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ege Çırakman - Research News</title>
+    <description>Latest news and updates from AI researcher Ege Çırakman</description>
+    <link>https://egecirakman.com</link>
+    <atom:link href="https://egecirakman.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 27 Jan 2025 00:00:00 +0000</lastBuildDate>
+
+    <item>
+      <title>IMAGE 2025 oral: WSGM posterior surrogate for seismic inversion</title>
+      <description>Presented research on wavelet score-based generative models for seismic inversion at IMAGE 2025 conference</description>
+      <link>https://egecirakman.com/#news</link>
+      <pubDate>Thu, 01 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://egecirakman.com/news/image-2025-oral</guid>
+    </item>
+
+    <item>
+      <title>ICML 2025 paper on STM mechanisms in RNNs posted to arXiv</title>
+      <description>Published paper on dynamical phases of short-term memory mechanisms in recurrent neural networks</description>
+      <link>https://egecirakman.com/papers/rnn-stm-dynamics-icml-2025</link>
+      <pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://egecirakman.com/news/icml-2025-stm-rnns</guid>
+    </item>
+
+    <item>
+      <title>Ghost mechanism paper accepted to PRX (in press); preprint on arXiv</title>
+      <description>Research on analytical model of abrupt learning accepted at Physical Review X</description>
+      <link>https://egecirakman.com/papers/ghost-mechanism-abrupt-learning-2025</link>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://egecirakman.com/news/ghost-mechanism-prx</guid>
+    </item>
+
+    <item>
+      <title>ICIP 2024 paper on trustworthy SR available on arXiv</title>
+      <description>Published paper on trustworthy super-resolution via diffusion models and human feedback</description>
+      <link>https://egecirakman.com/papers/trustworthy-sr-icip-2024</link>
+      <pubDate>Thu, 01 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://egecirakman.com/news/icip-2024-trustworthy-sr</guid>
+    </item>
+  </channel>
+</rss>

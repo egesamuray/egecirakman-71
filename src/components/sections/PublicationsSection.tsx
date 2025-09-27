@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, FileText, Code, Presentation, Book } from "lucide-react";
+import { ExternalLink, FileText, Code, Presentation, Book, ArrowRight } from "lucide-react";
 import { publications, type Publication } from "@/data/content";
 
 function PublicationCard({ publication }: { publication: Publication }) {
   const getStatusVariant = (status: string) => {
-    if (status.includes("published")) return "default";
-    if (status.includes("accepted")) return "secondary";
+    if (status === "published") return "default";
+    if (status === "accepted") return "secondary";
     return "outline";
   };
 
@@ -16,7 +16,7 @@ function PublicationCard({ publication }: { publication: Publication }) {
       case "pdf": return <FileText className="h-4 w-4" />;
       case "code": return <Code className="h-4 w-4" />;
       case "arxiv": return <Book className="h-4 w-4" />;
-      case "page": case "overview": return <Presentation className="h-4 w-4" />;
+      case "project": case "venue_page": return <Presentation className="h-4 w-4" />;
       default: return <ExternalLink className="h-4 w-4" />;
     }
   };
@@ -26,14 +26,10 @@ function PublicationCard({ publication }: { publication: Publication }) {
       case "pdf": return "PDF";
       case "code": return "Code";
       case "arxiv": return "arXiv";
-      case "page": return "Project";
-      case "overview": return "Overview";
-      case "icml": return "ICML";
+      case "project": return "Project";
+      case "venue_page": return "Venue";
+      case "slides": return "Slides";
       case "doi": return "DOI";
-      case "openreview": return "OpenReview";
-      case "program": return "Program";
-      case "rg": return "ResearchGate";
-      case "lab": return "Lab Page";
       default: return linkType.charAt(0).toUpperCase() + linkType.slice(1);
     }
   };
@@ -43,8 +39,17 @@ function PublicationCard({ publication }: { publication: Publication }) {
       <CardHeader>
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="space-y-2 flex-1">
-            <CardTitle className="text-lg leading-tight">{publication.title}</CardTitle>
-            <p className="text-sm text-muted-foreground">{publication.authors}</p>
+            <CardTitle className="text-lg leading-tight">
+              <a 
+                href={`/papers/${publication.slug}`}
+                className="hover:text-primary transition-colors"
+              >
+                {publication.title}
+              </a>
+            </CardTitle>
+            <p className="text-sm text-muted-foreground">
+              {Array.isArray(publication.authors) ? publication.authors.join(', ') : publication.authors}
+            </p>
             <div className="flex flex-wrap items-center gap-2">
               <Badge variant="outline">{publication.venue}</Badge>
               <Badge variant="outline">{publication.year}</Badge>
@@ -60,10 +65,17 @@ function PublicationCard({ publication }: { publication: Publication }) {
       </CardHeader>
       <CardContent>
         <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-          {publication.summary}
+          {publication.tldr}
         </p>
         
         <div className="flex flex-wrap gap-2">
+          <Button asChild size="sm" variant="default">
+            <a href={`/papers/${publication.slug}`}>
+              <ArrowRight className="h-4 w-4 mr-2" />
+              Details
+            </a>
+          </Button>
+          
           {Object.entries(publication.links).map(([type, url]) => 
             url && (
               <Button key={type} asChild size="sm" variant="outline">

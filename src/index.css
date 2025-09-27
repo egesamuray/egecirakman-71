@@ -2,85 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Skip link for accessibility */
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
-  padding: 8px;
-  text-decoration: none;
-  border-radius: 4px;
-  z-index: 100;
-}
-
-.skip-link:focus {
-  top: 6px;
-}
-
-/* Content container for consistent spacing */
-.content-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-/* Typography enhancements */
-.prose {
-  color: hsl(var(--foreground));
-  font-family: "Source Serif Pro", serif;
-  line-height: 1.6;
-}
-
-.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-  font-family: "Inter", sans-serif;
-}
-
-/* Smooth scrolling for anchor links */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Container utility */
-.container {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 @layer base {
   :root {
     /* Professional Academic Theme - Clean blues with high contrast */
@@ -187,9 +108,7 @@ html {
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -211,9 +130,22 @@ html {
   
   /* Skip to content link for accessibility */
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50;
-    @apply bg-primary text-primary-foreground px-4 py-2 rounded-md;
-    @apply font-medium text-sm transition-all;
+    position: fixed;
+    top: -40px;
+    left: 8px;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 100;
+    transition: top 0.3s ease;
+    font-size: 14px;
+  }
+
+  .skip-link:focus {
+    top: 8px;
   }
   
   /* Typography system */
@@ -251,13 +183,68 @@ html {
     @apply outline-2 outline-offset-2 outline-ring;
   }
   
-  /* Button focus rings */
-  .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2;
+  /* Performance optimizations */
+  img {
+    loading: lazy;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
+  /* Container utility */
+  .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    contain: layout style paint;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1536px;
+    }
+  }
+
+  /* Content reading width */
+  .content-container {
+    max-width: 80ch;
+    margin: 0 auto;
+  }
+  
   /* Publication status badges */
   .badge-published {
     @apply bg-success/10 text-success border-success/20;
@@ -297,9 +284,5 @@ html {
   /* Content sections */
   .section-spacing {
     @apply py-16 md:py-20;
-  }
-  
-  .content-container {
-    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
