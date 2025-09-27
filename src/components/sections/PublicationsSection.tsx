@@ -190,12 +190,36 @@ export function PublicationsSection() {
             Showing {filteredPublications.length} of {publications.length} publications
           </div>
 
-          {/* Publications list */}
           <div className="space-y-6">
             {filteredPublications.length > 0 ? (
-              filteredPublications.map((publication, index) => (
-                <PublicationCard key={index} publication={publication} showDetails={true} />
-              ))
+              <>
+                {/* Published/Accepted Papers */}
+                {filteredPublications.filter(pub => pub.status === "published" || pub.status === "accepted").map((publication, index) => (
+                  <PublicationCard key={index} publication={publication} showDetails={true} />
+                ))}
+                
+                {/* In Preparation Section */}
+                {filteredPublications.some(pub => pub.status === "in_prep") && (
+                  <>
+                    <div className="border-t pt-8">
+                      <h3 className="text-xl font-semibold mb-6 text-center">
+                        Preprints & In Preparation
+                        <span className="block text-sm font-normal text-muted-foreground mt-1">
+                          Currently working on these projects
+                        </span>
+                      </h3>
+                    </div>
+                    {filteredPublications.filter(pub => pub.status === "in_prep").map((publication, index) => (
+                      <PublicationCard key={`inprep-${index}`} publication={publication} showDetails={true} />
+                    ))}
+                  </>
+                )}
+                
+                {/* Preprints */}
+                {filteredPublications.filter(pub => pub.status === "preprint").map((publication, index) => (
+                  <PublicationCard key={`preprint-${index}`} publication={publication} showDetails={true} />
+                ))}
+              </>
             ) : (
               <Card className="p-8 text-center">
                 <p className="text-muted-foreground">No publications found matching your criteria.</p>

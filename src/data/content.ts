@@ -15,8 +15,8 @@ export const author = {
   },
   links: {
     website: "https://egecirakman.com",
-    linkedin: "https://www.linkedin.com/in/ege-çırakman-527759200/",
-    google_scholar: "", // TODO: user to supply
+    linkedin: "https://www.linkedin.com/in/ege-%C3%A7%C4%B1rakman-527759200/",
+    google_scholar: "https://scholar.google.com/citations?user=ZX7U-TgAAAAJ&hl=en",
     orcid: "", // TODO: user to supply  
     semantic_scholar: "", // TODO: user to supply
     openreview: "", // TODO: user to supply
@@ -153,6 +153,55 @@ export const publications: Publication[] = [
     },
     tldr: "Deployed real-time CNN optical inspection (TC-VISION) with big-data pipeline.",
     slug: "bearing-defect-detection-2022"
+  },
+  // Preprints & In Preparation
+  {
+    title: "Wavelet-Domain Image Prior Learning for Identity-Preserving Super-Resolution",
+    venue: "CVPR 2026 (Target)",
+    year: "2026",
+    status: "in_prep",
+    authors: ["E. Çırakman", "et al."],
+    links: {},
+    tldr: "Diffusion-based SR in wavelet domain with per-band KL divergence for identity preservation and artifact suppression.",
+    slug: "wavelet-domain-sr-cvpr-2026",
+    area: "computer-vision",
+    highlight: "First identity-preserving SR via wavelet-domain diffusion — maintains OCR consistency and face identity"
+  },
+  {
+    title: "Optimal Whitening Procedures for High-Frequency Detail Capture in Curvelet-Based Generative Models",
+    venue: "In Preparation",
+    year: "2025",
+    status: "in_prep", 
+    authors: ["E. Çırakman", "et al."],
+    links: {},
+    tldr: "Optimal whitening within curvelet transform framework to enhance high-frequency detail capture in generative models.",
+    slug: "curvelet-whitening-2025",
+    area: "diffusion-models",
+    highlight: "Novel whitening approach for curvelet transforms — optimized for high-frequency detail preservation"
+  },
+  {
+    title: "Heavy-Tailed Diffusion for Minority-Mode Coverage",
+    venue: "In Preparation", 
+    year: "2025",
+    status: "in_prep",
+    authors: ["E. Çırakman", "et al."],
+    links: {},
+    tldr: "Heavier-tailed noise schedules to improve rare-structure coverage and address class imbalance in geological features.",
+    slug: "heavy-tailed-diffusion-2025",
+    area: "inverse-problems",
+    highlight: "Addresses minority-mode collapse in diffusion models — improved coverage of rare geological structures"
+  },
+  {
+    title: "Curvelet-Adapted Diffusion and Curvelet Neural Operators",
+    venue: "In Preparation",
+    year: "2025", 
+    status: "in_prep",
+    authors: ["E. Çırakman", "et al."],
+    links: {},
+    tldr: "Exploiting curvelet sparsity and directional anisotropy for 2D/3D inversion with 1D→2D guidance pathways.",
+    slug: "curvelet-neural-operators-2025",
+    area: "inverse-problems",
+    highlight: "First curvelet neural operators — leverages directional sparsity for geological inversion"
   }
 ];
 
@@ -269,7 +318,7 @@ export const personalInfo = {
     scholar: author.links.google_scholar,
     linkedin: author.links.linkedin,
     email: `mailto:${author.email}`,
-    cv: "/files/Ege_Cirakman_CV.pdf",
+  cv: "/files/Ege_Cirakman_CV.pdf",
   },
   researchSummary: "I develop generative models and scalable inference methods for scientific imaging (seismic), study learning dynamics in RNNs, and work on trustworthy vision systems.",
   interests: researchInterests

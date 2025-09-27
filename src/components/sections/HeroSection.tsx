@@ -58,7 +58,6 @@ export function HeroSection() {
                   <a href={author.links.google_scholar || "#"} target="_blank" rel="noopener noreferrer">
                     <GraduationCap className="h-4 w-4" />
                     <span className="text-xs">Scholar</span>
-                    {!author.links.google_scholar && <span className="text-xs text-muted-foreground">(TBD)</span>}
                   </a>
                 </Button>
                 <Button asChild size="sm" variant="outline" className="h-auto flex-col gap-1 p-3">
@@ -93,15 +92,15 @@ export function HeroSection() {
                     </a>
                   </Button>
                   <Button asChild variant="outline" size="sm" className="w-full">
-                    <a href="/files/reviewers-kit.txt" className="flex items-center gap-2">
+                    <a href="/files/Ege_Cirakman_CV.pdf" className="flex items-center gap-2" target="_blank" rel="noopener noreferrer">
                       <FileText className="h-4 w-4" />
-                      <span>Reviewers' Kit</span>
+                      <span>CV PDF</span>
                     </a>
                   </Button>
                   <Button asChild variant="outline" size="sm" className="w-full">
                     <a href={author.links.github || "#"} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Github className="h-4 w-4" />
-                      <span>Code</span>
+                      <span>Code/GitHub</span>
                       {!author.links.github && <span className="text-xs">(TBD)</span>}
                     </a>
                   </Button>
@@ -124,10 +123,9 @@ export function HeroSection() {
               </a>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <a href={author.links.github || "#"} target="_blank" rel="noopener noreferrer">
-                <Github className="h-5 w-5 mr-2" />
-                GitHub
-                {!author.links.github && <span className="ml-1 text-xs">(TBD)</span>}
+              <a href={author.links.google_scholar} target="_blank" rel="noopener noreferrer">
+                <GraduationCap className="h-5 w-5 mr-2" />
+                Google Scholar
               </a>
             </Button>
           </div>

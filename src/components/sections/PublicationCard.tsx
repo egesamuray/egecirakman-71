@@ -16,7 +16,7 @@ export default function PublicationCard({
   const [copied, setCopied] = useState(false);
   const getStatusVariant = (status: string) => {
     if (status === "published") return "default";
-    if (status === "accepted") return "secondary";
+    if (status === "accepted") return "secondary"; 
     if (status === "in_prep") return "outline";
     return "outline";
   };
@@ -79,7 +79,9 @@ export default function PublicationCard({
               <Badge variant="outline">{publication.venue}</Badge>
               <Badge variant="outline">{publication.year}</Badge>
               <Badge variant={getStatusVariant(publication.status)}>
-                {publication.status === "in_prep" ? "in preparation" : publication.status}
+                {publication.status === "in_prep" ? "In Preparation" : 
+                 publication.status === "preprint" ? "Preprint" :
+                 publication.status}
               </Badge>
               {publication.badges?.map((badge, index) => (
                 <Badge key={index} variant="secondary">{badge}</Badge>
