@@ -186,15 +186,45 @@
   /* Performance optimizations */
   img {
     loading: lazy;
+    max-width: 100%;
+    height: auto;
   }
 
   /* Reduce motion for users who prefer it */
   @media (prefers-reduced-motion: reduce) {
-    * {
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
     }
+  }
+
+  /* Improved focus styles for accessibility */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+
+  /* Skip to content enhanced styling */
+  .skip-link {
+    position: fixed;
+    top: -40px;
+    left: 8px;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 100;
+    transition: top 0.3s ease;
+    font-size: 14px;
+  }
+
+  .skip-link:focus {
+    top: 8px;
   }
 }
 

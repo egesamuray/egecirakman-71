@@ -3,6 +3,7 @@ import { Navigation } from "@/components/layout/Navigation";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
+import { SelectedPublications } from "@/components/sections/SelectedPublications";
 import { NewsSection } from "@/components/sections/NewsSection";
 import { PublicationsSection } from "@/components/sections/PublicationsSection";
 import { ResearchSection } from "@/components/sections/ResearchSection";
@@ -55,6 +56,7 @@ const Index = () => {
           <HeroSection />
           <div className="content-container">
             <AboutSection />
+            <SelectedPublications />
             <NewsSection />
             <PublicationsSection />
             <ResearchSection />

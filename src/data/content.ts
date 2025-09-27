@@ -46,7 +46,7 @@ export interface Publication {
   title: string;
   venue: string;
   year: string;
-  status: "published" | "accepted" | "preprint";
+  status: "published" | "accepted" | "preprint" | "in_prep";
   badges?: string[];
   authors: string[];
   links: {
@@ -62,6 +62,7 @@ export interface Publication {
   slug: string;
   abstract?: string;
   bibtex?: string;
+  selected?: boolean;
 }
 
 // Publications
@@ -80,7 +81,8 @@ export const publications: Publication[] = [
       code: ""    // TODO
     },
     tldr: "Wavelet-domain conditional score surrogate; EDM schedules; ~73% faster sampling & ~50% lower GPU at matched fidelity.",
-    slug: "wavelet-score-seismic-inversion-2025"
+    slug: "wavelet-score-seismic-inversion-2025",
+    selected: true
   },
   {
     title: "Dynamical phases of short-term memory mechanisms in RNNs", 
@@ -94,7 +96,8 @@ export const publications: Publication[] = [
       code: "" // TODO
     },
     tldr: "Two STM mechanisms (slow-point manifolds vs. limit cycles); scaling of critical LR with delay; phase diagrams.",
-    slug: "rnn-stm-dynamics-icml-2025"
+    slug: "rnn-stm-dynamics-icml-2025",
+    selected: true
   },
   {
     title: "A ghost mechanism: An analytical model of abrupt learning",
@@ -107,7 +110,8 @@ export const publications: Publication[] = [
       doi: "" // TODO when available
     },
     tldr: "Ghost-induced bottleneck near saddle-node remnant; exact α* ∝ T^{-5}; validated across low/full-rank RNNs.",
-    slug: "ghost-mechanism-abrupt-learning-2025"
+    slug: "ghost-mechanism-abrupt-learning-2025",
+    selected: true
   },
   {
     title: "Trustworthy SR: Resolving ambiguity in image super-resolution via diffusion models and human feedback",

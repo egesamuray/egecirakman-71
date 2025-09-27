@@ -2,15 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, FileText, Code, Presentation, Book, ArrowRight } from "lucide-react";
-import { publications, type Publication } from "@/data/content";
+import { type Publication } from "@/data/content";
 
-// Get selected publications for homepage
-export const selectedPublications = publications.filter(pub => pub.selected);
-
-function PublicationCard({ publication, showDetails = true }: { publication: Publication; showDetails?: boolean }) {
+export default function PublicationCard({ 
+  publication, 
+  showDetails = true 
+}: { 
+  publication: Publication; 
+  showDetails?: boolean;
+}) {
   const getStatusVariant = (status: string) => {
     if (status === "published") return "default";
     if (status === "accepted") return "secondary";
+    if (status === "in_prep") return "outline";
     return "outline";
   };
 
@@ -43,12 +47,16 @@ function PublicationCard({ publication, showDetails = true }: { publication: Pub
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="space-y-2 flex-1">
             <CardTitle className="text-lg leading-tight">
-              <a 
-                href={`/papers/${publication.slug}`}
-                className="hover:text-primary transition-colors"
-              >
-                {publication.title}
-              </a>
+              {showDetails ? (
+                <a 
+                  href={`/papers/${publication.slug}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  {publication.title}
+                </a>
+              ) : (
+                publication.title
+              )}
             </CardTitle>
             <p className="text-sm text-muted-foreground">
               {Array.isArray(publication.authors) ? publication.authors.join(', ') : publication.authors}
@@ -57,7 +65,7 @@ function PublicationCard({ publication, showDetails = true }: { publication: Pub
               <Badge variant="outline">{publication.venue}</Badge>
               <Badge variant="outline">{publication.year}</Badge>
               <Badge variant={getStatusVariant(publication.status)}>
-                {publication.status}
+                {publication.status === "in_prep" ? "in preparation" : publication.status}
               </Badge>
               {publication.badges?.map((badge, index) => (
                 <Badge key={index} variant="secondary">{badge}</Badge>
@@ -94,28 +102,5 @@ function PublicationCard({ publication, showDetails = true }: { publication: Pub
         </div>
       </CardContent>
     </Card>
-  );
-}
-
-export function PublicationsSection() {
-  return (
-    <section id="publications" className="py-16">
-      <div className="container">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold">Publications</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Research papers in machine learning, generative modeling, and learning dynamics
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            {publications.map((publication, index) => (
-              <PublicationCard key={index} publication={publication} showDetails={true} />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }

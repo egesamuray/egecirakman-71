@@ -5,13 +5,15 @@ import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { ArrowLeft, Download, ExternalLink, Code, FileText, Presentation } from "lucide-react";
+import { ArrowLeft, Download, ExternalLink, Code, FileText, Presentation, Copy, Share } from "lucide-react";
 import { publications, type Publication } from "@/data/content";
+import { generateBibTeX, downloadBibTeX } from "@/utils/bibtex";
 
 export default function Paper() {
   const { slug } = useParams<{ slug: string }>();
   const [darkMode, setDarkMode] = useState(false);
   const [paper, setPaper] = useState<Publication | null>(null);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     // Check for saved theme preference
@@ -46,31 +48,39 @@ export default function Paper() {
     return <Navigate to="/404" replace />;
   }
 
-  const generateBibTeX = (paper: Publication) => {
-    const type = paper.venue.includes('arXiv') ? 'article' : 'inproceedings';
-    const authors = paper.authors.join(' and ').replace(/\*/g, '');
-    
-    return `@${type}{${paper.slug.replace(/-/g, '')},
-  title={${paper.title}},
-  author={${authors}},
-  ${type === 'article' ? 'journal' : 'booktitle'}={${paper.venue}},
-  year={${paper.year}},
-  ${paper.links.arxiv ? `archivePrefix={arXiv},\n  eprint={${paper.links.arxiv.split('/').pop()}},` : ''}
-  ${paper.links.doi ? `doi={${paper.links.doi.split('/').slice(-2).join('/')}},` : ''}
-}`;
+  const bibtex = generateBibTeX(paper);
+
+  const handleCopyBibTeX = async () => {
+    try {
+      await navigator.clipboard.writeText(bibtex);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy BibTeX:', err);
+    }
   };
 
-  const downloadBibTeX = () => {
-    const bibtex = generateBibTeX(paper);
-    const blob = new Blob([bibtex], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${paper.slug}.bib`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const handleShare = async () => {
+    const url = window.location.href;
+    
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: paper.title,
+          text: paper.tldr,
+          url: url,
+        });
+      } catch (err) {
+        console.log('Share cancelled');
+      }
+    } else {
+      // Fallback to clipboard
+      try {
+        await navigator.clipboard.writeText(url);
+      } catch (err) {
+        console.error('Failed to copy URL:', err);
+      }
+    }
   };
 
   return (
@@ -107,7 +117,7 @@ export default function Paper() {
                     paper.status === 'accepted' ? 'secondary' : 'outline'
                   }
                 >
-                  {paper.status}
+                  {paper.status === 'in_prep' ? 'in preparation' : paper.status}
                 </Badge>
               </div>
               
@@ -155,17 +165,17 @@ export default function Paper() {
                     </a>
                   </Button>
                 )}
-                
-                <Button onClick={downloadBibTeX} variant="outline" size="sm">
-                  <Download className="h-4 w-4 mr-2" />
-                  BibTeX
+
+                <Button onClick={handleShare} variant="outline" size="sm">
+                  <Share className="h-4 w-4 mr-2" />
+                  Share
                 </Button>
               </div>
             </header>
 
             <Card>
               <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">TL;DR</h2>
+                <h2 className="text-xl font-semibold mb-4">Summary</h2>
                 <p className="text-muted-foreground leading-relaxed">
                   {paper.tldr}
                 </p>
@@ -185,14 +195,30 @@ export default function Paper() {
 
             <Card>
               <CardContent className="p-6">
-                <h2 className="text-xl font-semibold mb-4">Citation</h2>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-xl font-semibold">Citation</h2>
+                  <div className="flex gap-2">
+                    <Button 
+                      onClick={handleCopyBibTeX} 
+                      variant="outline" 
+                      size="sm"
+                    >
+                      <Copy className="h-4 w-4 mr-2" />
+                      {copied ? 'Copied!' : 'Copy'}
+                    </Button>
+                    <Button 
+                      onClick={() => downloadBibTeX(paper)} 
+                      variant="outline" 
+                      size="sm"
+                    >
+                      <Download className="h-4 w-4 mr-2" />
+                      Download .bib
+                    </Button>
+                  </div>
+                </div>
                 <pre className="bg-muted p-4 rounded-lg text-sm overflow-x-auto">
-                  <code>{generateBibTeX(paper)}</code>
+                  <code>{bibtex}</code>
                 </pre>
-                <Button onClick={downloadBibTeX} variant="outline" size="sm" className="mt-4">
-                  <Download className="h-4 w-4 mr-2" />
-                  Download BibTeX
-                </Button>
               </CardContent>
             </Card>
           </article>
